@@ -5,15 +5,18 @@ const cors = require('cors')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forcast')
 const userRouter = require('./routers/user')
+const auth = require('./middleware/auth')
+
 
 const app = express()
 const port = process.env.PORT || 3000
 
+app.use(cors())
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());
 app.use(userRouter)
 
-app.use(cors())
+
 
 
 app.get('/api/weather',auth,(req,res) => {
